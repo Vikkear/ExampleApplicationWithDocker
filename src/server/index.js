@@ -1,19 +1,13 @@
 var express = require("express");
 var userManager = require("./userManager.js");
 var app = express();
-app.engine("html", require("ejs").renderFile);
-app.set("view engine", "html");
-const router = express.Router();
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
 
 app.get("/", (req, res, next) => {
-  data = {
-    title: "Hej :)"
-  };
-  res.render("index", data);
+  res.json("Hello world!");
 });
 
 app.get("/getUsers", async (req, res, next) => {

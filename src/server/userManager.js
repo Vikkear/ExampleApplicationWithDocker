@@ -10,7 +10,7 @@ module.exports = {
 };
 
 const mysql = require("promise-mysql");
-const config = require("./config/config.json");
+const config = require("../../config/db/config.json");
 let db;
 
 (async function() {
