@@ -10,7 +10,7 @@ module.exports = {
 };
 
 const mysql = require("promise-mysql");
-const config = require("../../config/db/config.json");
+const config = require("./config/db/config.json");
 let db;
 
 (async function() {
@@ -31,17 +31,25 @@ async function findAllInTable(table) {
   let res;
 
   res = await db.query(sql, [table]);
-  console.info(`SQL: ${sql} (${table}) got ${res.length} rows.`);
 
   return res;
 }
 
 async function addUser(username, password) {
-  let sql = "INSERT INTO users (username, password) VALUES (?, ?);";
+  // Check for user before adding...
+  let sql = "SELECT username FROM users WHERE username = ?";
   let res;
 
+  res = await db.query(sql, [username]);
+
+  if (res.length > 0) {
+    return "userExists";
+  }
+
+  //Adding new user
+  sql = "INSERT INTO users (username, password) VALUES (?, ?);";
+
   res = await db.query(sql, [username, password]);
-  console.log(res);
   return res;
 }
 
