@@ -6,3 +6,4 @@ CREATE TABLE users(
 	username VARCHAR(30),
     password VARCHAR(30)
 );
+

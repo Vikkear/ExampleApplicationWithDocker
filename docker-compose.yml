@@ -1,0 +1,45 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7.26
+    restart: always
+    environment:
+      DB_HOSTNAME: localhost
+      MYSQL_DATABASE: "cloudcomputing"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "pass"
+      MYSQL_ROOT_PASSWORD: "pass"
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    command:
+      - --innodb_use_native_aio=0
+      - --explicit_defaults_for_timestamp
+  api:
+    build: ./src/server
+    image: node:alpine
+    working_dir: /usr/src/app
+    command: npm start
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  react:
+    container_name: react
+    build: ./src/client
+    working_dir: /usr/app/react
+
+    ports:
+      - "3001:3000"
+    command: npm start
+
+# Names our volume
+volumes:
+  my-db:

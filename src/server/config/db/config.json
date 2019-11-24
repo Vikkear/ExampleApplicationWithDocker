@@ -1,6 +1,7 @@
 {
-    "host":     "localhost",
-    "user":     "user",
-    "password": "pass",
-    "database": "cloudcomputing"
+  "host": "192.168.99.100",
+  "user": "root",
+  "password": "pass",
+  "database": "cloudcomputing",
+  "insecureAuth": true
 }

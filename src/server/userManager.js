@@ -11,6 +11,7 @@ module.exports = {
 
 const mysql = require("promise-mysql");
 const config = require("./config/db/config.json");
+
 let db;
 
 (async function() {
@@ -22,6 +23,7 @@ let db;
 })();
 
 async function getUsers() {
+  db = await mysql.createConnection(config);
   let test = await findAllInTable("users");
   return test;
 }

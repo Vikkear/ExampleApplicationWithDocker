@@ -11,7 +11,8 @@ let allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 app.listen(8000, () => {
-  console.log("Server running on port 8000");
+  console.log("Knas");
+  console.log("Server running on port 420");
 });
 
 app.get("/", (req, res, next) => {
