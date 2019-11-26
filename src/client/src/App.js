@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-
-//let connection = "localhost";
-const connection = "192.168.99.100";
+import qs from "qs";
 
 function StartPage() {
   const [userArray, setUserArray] = useState([]);
@@ -15,7 +13,7 @@ function StartPage() {
   // Gets the name of the users in the database
   const getUsers = () => {
     axios
-      .get("http://192.168.99.100:8000/getUsers")
+      .get("http://localhost:8000/getUsers")
       .then(res => {
         setUserArray(res.data);
       })
@@ -25,18 +23,21 @@ function StartPage() {
   };
 
   const addUser = () => {
-    const data = JSON.stringify({
+    const data = qs.stringify({
       username: username,
       password: password
     });
+      
+    const headers = {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+    }
 
     axios
-      .post("http://192.168.99.100:8000/addUser", data, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-      .then(res => {})
+      .post("http://localhost:8000/addUser", data, {
+        headers: headers
+      } 
+      )
+      .then(res => {console.log(res)})
       .catch(err => {
         console.log(err);
       });

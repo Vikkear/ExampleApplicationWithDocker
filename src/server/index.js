@@ -1,6 +1,9 @@
 var express = require("express");
 var userManager = require("./userManager.js");
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(express.json());
 
 let allowCrossDomain = function(req, res, next) {
@@ -12,7 +15,7 @@ app.use(allowCrossDomain);
 
 app.listen(8000, () => {
   console.log("Knas");
-  console.log("Server running on port 420");
+  console.log("Server running on port 8000");
 });
 
 app.get("/", (req, res, next) => {
@@ -39,6 +42,7 @@ app.post("/addUser", async (req, res, next) => {
 
   return res.json(resTwo);
 });
+
 
 app.delete("/removeUser", async (req, res, next) => {
   let data = req.query;

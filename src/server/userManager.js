@@ -38,9 +38,13 @@ async function findAllInTable(table) {
 }
 
 async function addUser(username, password) {
+  db = await mysql.createConnection(config);
+
   // Check for user before adding...
   let sql = "SELECT username FROM users WHERE username = ?";
   let res;
+
+  
 
   res = await db.query(sql, [username]);
 

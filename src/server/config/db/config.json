@@ -1,5 +1,5 @@
 {
-  "host": "192.168.99.100",
+  "host": "db",
   "user": "root",
   "password": "pass",
   "database": "cloudcomputing",

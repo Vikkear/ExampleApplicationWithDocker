@@ -17,3 +17,5 @@ INSERT INTO users
     (username, password)
 VALUES
     ('Hej', '123');
+
+select * from users;
