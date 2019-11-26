@@ -5,7 +5,7 @@
 
 ### Backend
   The backend is set up in node.js/express together with a MYSQL database. <br>
-  The backend supports three different calls: <br>
+  The backend supports four different requests: <br>
   GET localhost:8000/ - Just prints a hello world <br>
   GET localhost:8000/getUsers - Gets all of the users in the database and returns it <br>
   POST localhost:8000/addUser - Adds a user to the database. <br>
